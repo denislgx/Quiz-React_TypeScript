@@ -67,9 +67,15 @@ const App: React.FC = () => {
                     callback={checkAnswer}
                 />
             )}
-            <button className="app__next" onClick={nextQuestion}>
-                Next Question
-            </button>
+
+            {!gameOver &&
+                !loading &&
+                userAnswers.length === number + 1 &&
+                number !== TOTAL_QUESTIONS - 1 && (
+                    <button className="app__next" onClick={nextQuestion}>
+                        Next Question
+                    </button>
+                )}
         </div>
     );
 };
