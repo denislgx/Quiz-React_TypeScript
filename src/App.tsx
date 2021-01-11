@@ -22,9 +22,9 @@ const App: React.FC = () => {
 
     const TOTAL_QUESTIONS = 10;
 
-    useEffect(() => {
-        startTrivia();
-    }, []);
+    // useEffect(() => {
+    //     startTrivia();
+    // }, []);
 
     const startTrivia = async () => {
         setLoading(true);
@@ -50,17 +50,23 @@ const App: React.FC = () => {
     return (
         <div className="App">
             <h1>QUIZ GAME</h1>
-            <button onClick={startTrivia}>Start</button>
-            <p className="app__score">Score: </p>
-            <p>Loading questions ...</p>
-            {/* <QuestionCard
-                questionNumber={number + 1}
-                totalQuestions={TOTAL_QUESTIONS}
-                question={questions[number].question}
-                answers={questions[number].answers}
-                userAnswer={userAnswers ? userAnswers[number] : undefined}
-                callback={checkAnswer}
-            /> */}
+            {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
+                <button onClick={startTrivia}>Start</button>
+            ) : null}
+
+            {!gameOver && <p className="app__score">Score: </p>}
+            {loading && <p>Loading questions ...</p>}
+
+            {!loading && !gameOver && (
+                <QuestionCard
+                    questionNumber={number + 1}
+                    totalQuestions={TOTAL_QUESTIONS}
+                    question={questions[number].question}
+                    answers={questions[number].answers}
+                    userAnswer={userAnswers ? userAnswers[number] : undefined}
+                    callback={checkAnswer}
+                />
+            )}
             <button className="app__next" onClick={nextQuestion}>
                 Next Question
             </button>
