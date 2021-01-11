@@ -81,7 +81,7 @@ const App: React.FC = () => {
                 <button onClick={startTrivia}>Start</button>
             ) : null}
 
-            {!gameOver && <p className="app__score">Score: </p>}
+            {!gameOver && <p className="app__score">Score: {score} </p>}
             {loading && <p>Loading questions ...</p>}
 
             {!loading && !gameOver && (
