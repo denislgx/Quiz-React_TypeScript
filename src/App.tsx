@@ -75,7 +75,6 @@ const App: React.FC = () => {
         }
     };
 
-    console.log("questions", questions);
     return (
         <>
             <GlobalStyle />

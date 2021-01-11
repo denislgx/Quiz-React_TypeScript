@@ -37,6 +37,7 @@ export const Wrapper = styled.div`
         border-radius: 20px;
         font-size: 1.2rem;
         margin: 0;
+        margin-bottom: 10px;
         border: 2px solid #d38558;
     }
 
