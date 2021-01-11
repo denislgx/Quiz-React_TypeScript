@@ -42,9 +42,36 @@ const App: React.FC = () => {
         setLoading(false);
     };
 
-    const checkAnswer = (event: React.MouseEvent<HTMLButtonElement>) => {};
+    const checkAnswer = (event: React.MouseEvent<HTMLButtonElement>) => {
+        if (!gameOver) {
+            const answer = event.currentTarget.value;
 
-    const nextQuestion = () => {};
+            const correct = questions[number].correct_answer === answer;
+
+            if (correct) {
+                setScore((prev) => prev + 1);
+            }
+
+            const answerObject = {
+                question: questions[number].question,
+                answer,
+                correct,
+                correctAnswer: questions[number].correct_answer,
+            };
+
+            setUserAnswers((prev) => [...prev, answerObject]);
+        }
+    };
+
+    const nextQuestion = () => {
+        const nextQuestion = number + 1;
+
+        if (nextQuestion === TOTAL_QUESTIONS) {
+            setGameOver(true);
+        } else {
+            setNumber(nextQuestion);
+        }
+    };
 
     console.log("questions", questions);
     return (
